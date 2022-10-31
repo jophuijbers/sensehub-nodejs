@@ -1,10 +1,13 @@
 const router = require('express').Router()
-const {indexUsers, storeUser, destroyUser} = require('../controllers/user.controller')
+const {isAdmin} = require('../middleware/auth')
+const {indexUsers, showAuthUser, storeUser, destroyUser} = require('../controllers/user.controller')
 
-router.get('/', indexUsers)
+router.get('/', isAdmin, indexUsers)
 
-router.post('/', storeUser)
+router.get('/me', showAuthUser)
 
-router.delete('/:id', destroyUser)
+router.post('/', isAdmin, storeUser)
+
+router.delete('/:id', isAdmin, destroyUser)
 
 module.exports = router
