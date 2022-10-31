@@ -5,6 +5,11 @@ const formatDate = (date) => {
     return moment(date).locale('nl').format('L')
 }
 
+const getPastDate = (amount, unit) => {
+    return moment().subtract(amount, unit).toDate()
+}
+
 module.exports = {
-    formatDate
+    formatDate,
+    getPastDate
 }

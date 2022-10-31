@@ -2,6 +2,7 @@ node_modules
 
 # local directories
 public
+videos
 
 # local env files
 .env
