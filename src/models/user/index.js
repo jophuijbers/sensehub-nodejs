@@ -44,14 +44,6 @@ userSchema.methods.comparePassword = async function(password) {
     return await bcrypt.compare(password, this.password)
 }
 
-userSchema.methods.addToWatched = function(video) {
-    if (this.watched.includes(video.id))
-        return
-
-    this.watched.push(video.id)
-    this.save()
-}
-
 userSchema.methods.hasWatched = function(video) {
     return this.watched.includes(video.id)
 }
