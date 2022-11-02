@@ -9,6 +9,15 @@ const indexUsers = async (request, response, next) => {
     }
 }
 
+const showAuthUser = async (request, response, next) => {
+    try {
+        const user = request.user.toAuthJSON()
+        response.json(user)
+    } catch (error) {
+        next(error)
+    }
+}
+
 const storeUser = async (request, response, next) => {
     const payload = {
         username: request.body.username,
@@ -35,6 +44,7 @@ const destroyUser = async (request, response, next) => {
 
 module.exports = {
     indexUsers,
+    showAuthUser,
     storeUser,
     destroyUser
 }

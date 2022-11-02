@@ -8,6 +8,10 @@ const getUserById = async (id) => {
     return User.findById(id)
 }
 
+const getUserByUsername = async (username) => {
+    return User.findOne({ username: username })
+}
+
 const createUser = async (payload) => {
     const user = new User(payload)
 
@@ -20,9 +24,18 @@ const deleteUser = async (id) => {
     await User.deleteOne({ _id: id })
 }
 
+const checkCredentials = async (username, password) => {
+    const user = await getUserByUsername(username)
+
+    const isAuth = await user?.comparePassword(password)
+
+    return isAuth ? user : null
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     createUser,
-    deleteUser
+    deleteUser,
+    checkCredentials
 }
