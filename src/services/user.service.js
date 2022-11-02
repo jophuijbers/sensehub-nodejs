@@ -32,10 +32,20 @@ const checkCredentials = async (username, password) => {
     return isAuth ? user : null
 }
 
+const addVideoToWatched = async (user, video) => {
+    if (user.watched.includes(video.id))
+        return
+
+    user.watched.push(video.id)
+
+    await user.save()
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     createUser,
     deleteUser,
-    checkCredentials
+    checkCredentials,
+    addVideoToWatched
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const userSchema = require('./user.schema')
-const { generateToken } = require('../../utils/jwt.util')
+const {generateToken} = require('../../utils/jwt.util')
 const {formatDate} = require('../../utils/date.util')
 
 userSchema.methods.toJSON = function() {
@@ -33,8 +33,19 @@ userSchema.methods.toAuthJSON = function() {
     }
 }
 
+userSchema.methods.toJSONCreator = function() {
+    return {
+        id: this._id,
+        username: this.username
+    }
+}
+
 userSchema.methods.comparePassword = async function(password) {
     return await bcrypt.compare(password, this.password)
+}
+
+userSchema.methods.hasWatched = function(video) {
+    return this.watched.includes(video.id)
 }
 
 module.exports = mongoose.model('User', userSchema)
