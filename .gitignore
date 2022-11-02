@@ -1,8 +1,9 @@
 node_modules
 
 # local directories
-public
 videos
+public/thumbnails/*
+!public/thumbnails/default.png
 
 # local env files
 .env
