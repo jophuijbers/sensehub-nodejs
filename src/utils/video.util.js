@@ -23,7 +23,7 @@ const saveVideos = (directory) => {
         else if (stats.isDirectory()) {
             let contents = getFolderContents(`${dir}/${entry}`)
             contents.forEach((entry2) => {
-                if (!isMp4(entry)) return
+                if (!isMp4(entry2)) return
                 videos.push({
                     name: path.parse(entry2).name,
                     path: `${dir}/${entry}/${entry2}`
