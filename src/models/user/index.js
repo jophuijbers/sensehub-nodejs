@@ -11,7 +11,8 @@ userSchema.methods.toJSON = function() {
         username: this.username,
         role: this.role,
         isAdmin: this.role === 'admin',
-        lastLogin: formatDate(this.lastLogin)
+        lastLogin: formatDate(this.lastLogin),
+        createdAt: formatDate(this.createdAt)
     }
 }
 
